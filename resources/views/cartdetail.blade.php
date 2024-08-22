@@ -3,6 +3,7 @@
 <br>
 <br>
 <br>
+
 <div class="container container-fluid">
     <div class="row">
         <div class="col-sm-6">
@@ -17,13 +18,7 @@
             <br>
             <br>
             <div class="row">
-                <div class="col-sm-3">
-                    <form action="/add_to_cart" method="POST">
-                        @csrf
-                        <input type="hidden" name="products_id" value="{{$product['id']}}">
-                        <button class="btn btn-primary">Add to Cart</button>
-                    </form>
-                </div>
+                
                 <div class="col-sm-3">
                     <button class="btn btn-success">Buy Now</button>
                 </div>

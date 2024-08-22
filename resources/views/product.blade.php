@@ -16,15 +16,15 @@
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
         @foreach ($products as $item)
-            
+
             <a href="detail/{{$item['id']}}">
-            <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                <img src="{{$item['gallery']}}" class="d-block w-100 slider-img">
-                <div class="carousel-caption ">
-                    <h3>{{$item['name']}}</h3>
-                    <p>{{$item['description']}}</p>
+                <div class="carousel-item {{$loop->first ? 'active' : ''}}">
+                    <img src="{{$item['gallery']}}" class="d-block w-100 slider-img">
+                    <div class="carousel-caption ">
+                        <h3>{{$item['name']}}</h3>
+                        <p>{{$item['description']}}</p>
+                    </div>
                 </div>
-            </div>
 
             </a>
         @endforeach
@@ -39,28 +39,28 @@
         </button>
 
     </div>
-    </div>
+</div>
 
 
-    <div class="trending-wrapper">
-        <h3>Trending Products</h3>
-        @foreach ($products as $item)
+<div class="trending-wrapper">
+    <h3>Trending Products</h3>
+    @foreach ($products as $item)
         <a href="detail/{{$item['id']}}">
             <div class="trending-item">
                 <img class="treding-img" src="{{$item['gallery']}}">
                 <p>{{$item['name']}}</p>
             </div>
-</a>
-        @endforeach
-    </div>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   
+        </a>
+    @endforeach
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-    @endsection
+
+@endsection
