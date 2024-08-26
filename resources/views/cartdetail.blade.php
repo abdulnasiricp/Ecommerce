@@ -7,7 +7,8 @@
 <div class="container container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            <img class="detail-img" src="{{$product['gallery']}}" alt="">
+            <!-- <img class="detail-img" src="{{$product['gallery']}}" alt=""> -->
+            <img class="detail-img" src="{{ asset($product['gallery']) }}" alt="{{$product['name']}}">
 
         </div>
         <div class="col-sm-6">

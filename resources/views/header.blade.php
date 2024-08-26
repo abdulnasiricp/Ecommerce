@@ -31,7 +31,7 @@ $total = ProductController::cartItem()
     <ul class="navbar-nav ms-auto">
       <li class="nav-item">
         <a class="nav-link" href="/cartlist">Cart({{$total}})</a>
-        @if (Session::has('user'))
+        @if (Session::has('user') && Session::get('user')['role'] === 'user')
         <li class="dropdown">
         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#">{{Session::get('user')['name']}}
           <span class="caret"></span></a>
@@ -40,9 +40,9 @@ $total = ProductController::cartItem()
         </ul>
         </li>
       @else
-      <li><a class="nav-link" href="/login">Login</a></li>
+      <li><a class="nav-link" href="/userlogin">Login</a></li>
       
-      <li><a class="nav-link" href="/register">Register</a></li>
+      <li><a class="nav-link" href="/userregister">Register</a></li>
 
 
     @endif

@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+   // user or customer login and register
     function login(Request $req)
     {
-        $user = User::where(["email" => $req->email])->first();
+        $user = User::where(["email" => $req->email, "role" => "user"])->first();
+        // $user = User::where(["email" => $req->email])->first();
 
         if (!$user || !Hash::check($req->password, $user->password)) {
             return "Username or password is not matched";
@@ -26,8 +29,9 @@ class UserController extends Controller
         $user->name = $req->name;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
+        $user->role='user';
         $user->save();
-        return redirect("/login");
+        return redirect("/userlogin");
 
     }
 

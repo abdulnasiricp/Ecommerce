@@ -14,7 +14,8 @@
             @foreach ($items as $item)
                 <a href="cartdetail/{{$item->id}}">
                     <div class="trending-item">
-                        <img class="treding-img" src="{{$item->gallery}}">
+                        <!-- <img class="treding-img" src="{{$item->gallery}}"> -->
+                        <img class="treding-img" src="{{ asset($item->gallery) }}" alt="{{$item->name}}">
                         <p>{{$item->name}}</p>
                         <a class="btn btn-warning" href="removecart/{{$item->cart_id}}">Remove from cart</a>
                     </div>

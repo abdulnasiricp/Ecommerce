@@ -47,20 +47,14 @@
     @foreach ($products as $item)
         <a href="detail/{{$item['id']}}">
             <div class="trending-item">
-                <img class="treding-img" src="{{$item['gallery']}}">
+                <!-- <img class="treding-img" src="{{$item['gallery']}}"> -->
+                <img class="treding-img" src="{{ asset($item['gallery']) }}" alt="{{$item['name']}}">
+
                 <p>{{$item['name']}}</p>
             </div>
         </a>
     @endforeach
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 @endsection

@@ -8,9 +8,40 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+   
+    
+
+function addProduct(Request $req)
+{
+    $product = new Product;
+
+    // Assign form values to the product object
+    $product->name = $req->name;
+    $product->category = $req->category;
+    $product->price = $req->price;
+    $product->description = $req->description;
+
+ // Handle the file upload
+ if ($req->hasFile('gallery')) {
+    $file = $req->file('gallery');
+    // Generate a unique file name
+    $filename = time() . '_' . $file->getClientOriginalName();
+    // Store the file in the public/images directory
+    $filePath = $file->storeAs('public/images', $filename);
+    // Store the public path in the database (remove 'public/' from the path)
+    $product->gallery = str_replace('public/', 'storage/', $filePath);
+}
+
+    $product->save();
+
+    return redirect('categories');
+}
+
     function index()
     {
         $data = Product::all();
