@@ -102,3 +102,10 @@ Route::post('orderplace',[ProductController::class,'orderPlace']);
 
 Route::get('myorders',[ProductController::class,'myOrders']);
 
+
+//send dynamic data
+Route::get('demo', function()
+{
+    $welcome= 'welcome';
+    return view('welcome',compact('welcome'));
+});
