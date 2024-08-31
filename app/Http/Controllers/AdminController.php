@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -85,6 +86,8 @@ class AdminController extends Controller
     {
         return view('Dashboard.edit-category');
     }
+
+ 
     public function service_details()
     {
         return view('Dashboard.service-details');

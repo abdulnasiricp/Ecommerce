@@ -13,33 +13,64 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
 
-   
-    
 
-function addProduct(Request $req)
+
+
+    function addProduct(Request $req)
+    {
+        $product = new Product;
+        // Assign form values to the product object
+        $product->name = $req->name;
+        $product->category = $req->category;
+        $product->price = $req->price;
+        $product->description = $req->description;
+
+        // Handle the file upload
+        if ($req->hasFile('gallery')) {
+            $file = $req->file('gallery');
+            // Generate a unique file name
+            $filename = time() . '_' . $file->getClientOriginalName();
+            // Store the file in the public/images directory
+            $filePath = $file->storeAs('public/images', $filename);
+            // Store the public path in the database (remove 'public/' from the path)
+            $product->gallery = str_replace('public/', 'storage/', $filePath);
+        }
+        $product->save();
+        return redirect('categories');
+    }
+
+    //edit Produt
+    // function editProduct(Request $req)
+    // {
+    //     $product = Product::find($req->id);
+
+    //     $product->name = $req->name;
+    //     $product->category = $req->category;
+    //     $product->price = $req->price;
+    //     $product->description = $req->description;
+    //     if ($product->save()) {
+    //         return [
+    //             "Result" => "product Edited Successfully",
+    //         ];
+    //     } else {
+    //         return [
+    //             "Result" => "Opration Failled",
+    //         ];
+    //     }
+    // }
+
+    public function editProduct(Request $request, $id)
 {
-    $product = new Product;
+    $category = Product::find($id);
 
-    // Assign form values to the product object
-    $product->name = $req->name;
-    $product->category = $req->category;
-    $product->price = $req->price;
-    $product->description = $req->description;
+    $category->name = $request->input('name');
+    $category->price = $request->input('price');
+    $category->description = $request->input('description');
+    // Add other fields if necessary
 
- // Handle the file upload
- if ($req->hasFile('gallery')) {
-    $file = $req->file('gallery');
-    // Generate a unique file name
-    $filename = time() . '_' . $file->getClientOriginalName();
-    // Store the file in the public/images directory
-    $filePath = $file->storeAs('public/images', $filename);
-    // Store the public path in the database (remove 'public/' from the path)
-    $product->gallery = str_replace('public/', 'storage/', $filePath);
-}
+    $category->save();
 
-    $product->save();
-
-    return redirect('categories');
+    return redirect('/categories')->with('success', 'Category updated successfully.');
 }
 
     function index()
@@ -47,6 +78,12 @@ function addProduct(Request $req)
         $data = Product::all();
 
         return view("product", ["products" => $data]);
+    }
+    function Adminindex()
+    {
+        $data = Product::all();
+
+        return view("Dashboard.categories", ["products" => $data]);
     }
     function detail($id)
     {

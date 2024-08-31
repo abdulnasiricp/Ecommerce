@@ -23,6 +23,7 @@ Route::post("/admin-register", [AdminController::class,"admin_register_check"]);
 Route::get("/index", [AdminController::class,"index"]);
 Route::get("/categories", [AdminController::class,"categories"]);
 Route::post("/addproduct", [ProductController::class,"addProduct"]);
+Route::get("/categories", [ProductController::class,"Adminindex"]);
 Route::get("/subcategories", [AdminController::class,"subcategories"]);
 Route::get("/service-list", [AdminController::class,"service_list"]);
 Route::get("/total-report", [AdminController::class,"total_report"]);
@@ -55,12 +56,6 @@ Route::get('/admin_logout', function () {
 });
 
 
-
-
-// Route::view('admin-notification','admin-notification');
-// Route::view('add-subscription','add-subscription');
-// Route::view('sms-settings','sms-settings');
-// Route::view('stripe_payment_gateway','stripe_payment_gateway');
 
 
 
